@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="grupoRoot" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+    <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+    <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+      <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+      <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+      <RowConstraints minHeight="-Infinity" vgrow="ALWAYS" />
+  </rowConstraints>
+   <children>
+      <Label text="Denominacion:">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="Inicio de curso:" GridPane.rowIndex="1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="Fin de curso:" GridPane.rowIndex="2">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="Examenes:" GridPane.rowIndex="3">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="Practicas:" GridPane.rowIndex="4">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="Actitud:" GridPane.rowIndex="5">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <TextField fx:id="denominacionText" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <DatePicker fx:id="inicioDate" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </DatePicker>
+      <DatePicker fx:id="finDate" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </DatePicker>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Slider fx:id="examenSlider" showTickMarks="true" HBox.hgrow="ALWAYS" />
+            <Label fx:id="exaPorcenLabel" text="Label">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Slider fx:id="practicaSlider" showTickMarks="true" HBox.hgrow="ALWAYS" />
+            <Label fx:id="practicPorcenLabel" text="Label">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <Slider fx:id="actitudSlider" showTickMarks="true" HBox.hgrow="ALWAYS" />
+            <Label fx:id="actitudPorcenLabel" text="Label">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>
