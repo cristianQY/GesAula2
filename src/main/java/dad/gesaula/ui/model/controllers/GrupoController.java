@@ -58,7 +58,18 @@ public class GrupoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Añadir listener a los sliders para actualizar el texto de los labels
+        actitudSlider.valueProperty().addListener((observable, oldValue, newValue) ->
+                actitudPorcenLabel.setText(String.format("%.0f%%", newValue.doubleValue()))
+        );
 
+        examenSlider.valueProperty().addListener((observable, oldValue, newValue) ->
+                exaPorcenLabel.setText(String.format("%.0f%%", newValue.doubleValue()))
+        );
+
+        practicaSlider.valueProperty().addListener((observable, oldValue, newValue) ->
+                practicPorcenLabel.setText(String.format("%.0f%%", newValue.doubleValue()))
+        );
     }
 
     public Label getActitudPorcenLabel() {

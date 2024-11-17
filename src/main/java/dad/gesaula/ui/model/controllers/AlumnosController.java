@@ -8,12 +8,13 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -23,19 +24,19 @@ import java.util.ResourceBundle;
 
 public class AlumnosController implements Initializable {
 
-    private AlumnoController alumnoController = new AlumnoController();
+    private final AlumnoController alumnoController = new AlumnoController();
 
-    private ListProperty<Alumno> alumno = new SimpleListProperty<>(
+    private final ListProperty<Alumno> alumnos = new SimpleListProperty<>(
             FXCollections.observableArrayList(
-                    friend -> new Observable[] { friend.nombreProperty(), friend.apellidosProperty() }
+                    alumno -> new Observable[] { alumno.nombreProperty(), alumno.apellidosProperty() }
             ));
-    private final ObjectProperty<Alumno> selectedFriend = new SimpleObjectProperty<>();
+    private final ObjectProperty<Alumno> selectedAlumno = new SimpleObjectProperty<>();
 
     @FXML
-    private BorderPane alumnoRoot;
+    private BorderPane alumnosRoot;
 
     @FXML
-    private TableView<Alumno> alumnoTable;
+    private ListView<Alumno> alumnoList;
 
     @FXML
     private Button eliminarAlumButton;
@@ -60,36 +61,44 @@ public class AlumnosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        alumnoTable.itemsProperty().bind(alumno);
-        selectedFriend.bind(alumnoTable.getSelectionModel().selectedItemProperty());
-        eliminarAlumButton.disableProperty().bind(selectedFriend.isNull());
+        alumnoList.itemsProperty().bind(alumnos);
+        selectedAlumno.bind(alumnoList.getSelectionModel().selectedItemProperty());
+        eliminarAlumButton.disableProperty().bind(selectedAlumno.isNull());
 
-        selectedFriend.addListener(this::onSelectedFriendChanged);
+        selectedAlumno.addListener(this::onSelectedAlumnoChanged);
+
+        alumnoController.alumnoProperty().bind(selectedAlumno);
 
     }
 
-    private void onSelectedFriendChanged(ObservableValue<? extends Alumno> o, Alumno ov, Alumno nv) {
+    private void onSelectedAlumnoChanged(ObservableValue<? extends Alumno> o, Alumno ov, Alumno nv) {
+        // Limpia el VBox antes de añadir nuevos nodos
+        emptyBox.getChildren().clear();
+
         if (nv == null) {
-            alumnoRoot.setCenter(emptyBox);
+            // Muestra un mensaje indicando que no hay selección
+            emptyBox.getChildren().add(new javafx.scene.control.Label("No hay alumno seleccionado."));
         } else {
-            alumnoRoot.setCenter(alumnoController.getAlumnoRoot());
+            // Configura los detalles del AlumnoController
+
+            emptyBox.getChildren().add(alumnoController.getAlumnoRoot());
         }
     }
 
-    public BorderPane getAlumnoRoot() {
-        return alumnoRoot;
+
+    public BorderPane getAlumnosRoot() {
+        return alumnosRoot;
     }
 
-    public void setAlumnoRoot(BorderPane alumnoRoot) {
-        this.alumnoRoot = alumnoRoot;
+    public void setAlumnosRoot(BorderPane alumnosRoot) {
+        this.alumnosRoot = alumnosRoot;
     }
 
-    public TableView<?> getAlumnoTable() {
-        return alumnoTable;
+    public ListView<Alumno> getAlumnoList() {
+        return alumnoList;
     }
 
-    public void setAlumnoTable(TableView<Alumno> alumnoTable) {
-        this.alumnoTable = alumnoTable;
+    public void setAlumnoList(ListView<Alumno> alumnoList) {
     }
 
     public Button getEliminarAlumButton() {
@@ -110,11 +119,37 @@ public class AlumnosController implements Initializable {
 
     @FXML
     void onDeleteAction(ActionEvent event) {
-
+        Alumno selected = selectedAlumno.get();
+        if (selected != null) {
+            alumnos.remove(selected);
+            alumnoList.getSelectionModel().clearSelection(); // Limpia la selección actual
+        }
     }
 
     @FXML
     void onNewAlumnAction(ActionEvent event) {
+        // Deseleccionar el alumno actual
+        alumnoList.getSelectionModel().clearSelection();
+
+        // Crea un nuevo alumno
+        Alumno alumno = new Alumno();
+        alumno.setNombre("Nombre");
+        alumno.setApellidos("Apellidos");
+
+        // Añade el nuevo alumno a la lista
+        alumnos.add(alumno);
+
+        // Selecciona automáticamente el nuevo alumno
+        alumnoList.getSelectionModel().select(alumno);
 
     }
+
+    public ObservableList<Alumno> getAlumno() {
+        return alumnos.get();
+    }
+
+    public ListProperty<Alumno> friendsProperty() {
+        return alumnos;
+    }
+
 }

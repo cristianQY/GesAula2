@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="nuevoButton" mnemonicParsing="false" onAction="#onNewFileAction" text="Nuevo" />
-            <TextField fx:id="nombreFicheroText" promptText="Nombre del fichero" />
-            <Button fx:id="guardarButton" mnemonicParsing="false" onAction="#onSaveAction" text="Guardar" />
+            <Button fx:id="nuevoButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNewFileAction" text="Nuevo" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="nombreFicheroText" minHeight="-Infinity" minWidth="-Infinity" promptText="Nombre del fichero" HBox.hgrow="ALWAYS" />
+            <Button fx:id="guardarButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSaveAction" text="Guardar" HBox.hgrow="ALWAYS" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -26,7 +26,7 @@
       </HBox>
    </top>
    <center>
-      <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane minHeight="-Infinity" minWidth="-Infinity" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="grupoTab" text="Grupo">
             <content>

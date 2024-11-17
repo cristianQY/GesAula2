@@ -6,20 +6,16 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 @XmlType
 public class Alumno {
-	private StringProperty nombre;
-	private StringProperty apellidos;
-	private ObjectProperty<LocalDate> fechaNacimiento;
-	private ObjectProperty<Sexo> sexo;
-	private BooleanProperty repite;
+
+	private final StringProperty nombre;
+	private final StringProperty apellidos;
+	private final ObjectProperty<LocalDate> fechaNacimiento;
+	private final ObjectProperty<Sexo> sexo;
+	private final BooleanProperty repite;
 
 	public Alumno() {
 		nombre = new SimpleStringProperty(this, "nombre");
